@@ -1,11 +1,12 @@
 package Application;
 
-import Tabuleiro.Board;
+import Xadrez.Chess_Match;
 
 public class Programa {
 
 	public static void main(String[] args) {
 		
-		Board board = new Board(8, 8);
+		Chess_Match chessMatch = new Chess_Match();
+		UI.printBoard(chessMatch.getPieces());
 	}
 }
