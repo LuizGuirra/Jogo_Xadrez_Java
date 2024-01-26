@@ -3,7 +3,7 @@ package Xadrez;
 import Tabuleiro.Board;
 import Tabuleiro.Piece;
 
-public class Chess_Piece extends Piece{
+public abstract class Chess_Piece extends Piece{
 	
 	private Color color;
 

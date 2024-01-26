@@ -44,7 +44,7 @@ public class UI {
 			return new Chess_Position(column, row);
 		}
 		catch(RuntimeException e){
-			throw new InputMismatchException("Erro ao ler a posição do xadrez. Os valores válidos são de a1 a h8");
+			throw new InputMismatchException("Error reading chess position. Valid values are a1 to h8");
 		}
 	}
 	public static void printBoard(Chess_Piece[][] pieces) {
