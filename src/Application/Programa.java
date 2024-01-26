@@ -1,7 +1,9 @@
 package Application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Xadrez.Chess_Exception;
 import Xadrez.Chess_Match;
 import Xadrez.Chess_Piece;
 import Xadrez.Chess_Position;
@@ -14,16 +16,27 @@ public class Programa {
 		Chess_Match chessMatch = new Chess_Match();
 		
 		while (true) {
-			UI.printBoard(chessMatch.getPieces());
-			System.out.println();
-			System.out.print("Origem: ");
-			Chess_Position source = UI.readChessPosition(sc);
-			
-			System.out.println();
-			System.out.print("Destino: ");
-			Chess_Position target = UI.readChessPosition(sc);
-			
-			Chess_Piece capturedPiece = chessMatch.performChessMove(source, target);
+			try {
+				UI.clearScreen();
+				UI.printBoard(chessMatch.getPieces());
+				System.out.println();
+				System.out.print("Origem: ");
+				Chess_Position source = UI.readChessPosition(sc);
+				
+				System.out.println();
+				System.out.print("Destino: ");
+				Chess_Position target = UI.readChessPosition(sc);
+				
+				Chess_Piece capturedPiece = chessMatch.performChessMove(source, target);
+			}
+			catch(Chess_Exception e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
+			catch(InputMismatchException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
 		}
 	}
 }
