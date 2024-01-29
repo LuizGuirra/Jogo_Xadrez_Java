@@ -23,6 +23,11 @@ public class Chess_Match {
 		}
 		return mat;
 	}
+	public boolean[][] possibleMoves(Chess_Position sourcePosition){
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+	}
 	public Chess_Piece performChessMove(Chess_Position sourcePosition, Chess_Position targetPosition) {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
@@ -37,7 +42,6 @@ public class Chess_Match {
 		board.placePiece(p, target);
 		return capturedPiece;
 	}
-	
 	private void validateSourcePosition(Position position) {
 		if(!board.thereIsAPiece(position)) {
 			throw new Chess_Exception("There is no part in the home position");
