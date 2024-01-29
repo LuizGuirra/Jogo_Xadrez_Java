@@ -3,6 +3,7 @@ package Application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Xadrez.Chess_Match;
 import Xadrez.Chess_Piece;
 import Xadrez.Chess_Position;
 import Xadrez.Color;
@@ -35,7 +36,6 @@ public class UI {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
-	
 	public static Chess_Position readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
@@ -47,6 +47,12 @@ public class UI {
 			throw new InputMismatchException("Error reading chess position. Valid values are a1 to h8");
 		}
 	}
+	public static void printMatch(Chess_Match chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn : " + chessMatch.getTurn());
+		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+	}
 	public static void printBoard(Chess_Piece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -57,7 +63,6 @@ public class UI {
 		}
 		System.out.println("  a b c d e f g h");
 	}
-	
 	public static void printBoard(Chess_Piece[][] pieces, boolean[][] possibleMoves) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -68,7 +73,6 @@ public class UI {
 		}
 		System.out.println("  a b c d e f g h");
 	}
-	
 	private static void printPiece(Chess_Piece piece, boolean background) {
 		if(background) {
 			System.out.print(ANSI_BLUE_BACKGROUND);
