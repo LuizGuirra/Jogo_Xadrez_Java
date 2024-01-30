@@ -1,5 +1,8 @@
 package Xadrez;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Tabuleiro.Board;
 import Tabuleiro.Piece;
 import Tabuleiro.Position;
@@ -11,6 +14,9 @@ public class Chess_Match {
 	private int turn;
 	private Color currentPlayer;
 	private Board board;
+	
+	private List<Piece> piecesOnTheBoard = new ArrayList<>();
+	private List<Piece> capturedPieces = new ArrayList<>();
 	
 	public Chess_Match() {
 		board = new Board(8, 8);
@@ -51,6 +57,12 @@ public class Chess_Match {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
+		
+		if(capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);
+		}
+		
 		return capturedPiece;
 	}
 	private void validateSourcePosition(Position position) {
@@ -75,6 +87,7 @@ public class Chess_Match {
 	}
 	private void placeNewPiece(char column, int row, Chess_Piece piece) {
 		board.placePiece(piece, new Chess_Position(column, row).toPosition());
+		piecesOnTheBoard.add(piece);
 	}
 	private void initialSetup() {
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
