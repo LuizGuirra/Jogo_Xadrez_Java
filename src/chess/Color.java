@@ -1,4 +1,4 @@
-package Xadrez;
+package chess;
 
 public enum Color {
 	BLACK,
